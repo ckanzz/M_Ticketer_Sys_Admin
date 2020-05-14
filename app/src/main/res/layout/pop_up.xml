@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pop_up_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:background="@android:color/holo_blue_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="Enter Movie Details"
+                android:textSize="18sp"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/movie_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:autofillHints=""
+                android:hint="Enter Movie Name" />
+
+            <EditText
+                android:id="@+id/area_code"
+                android:layout_width="match_parent"
+                android:inputType="number"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movie_name"
+                android:autofillHints=""
+                android:hint="Enter Area Code" />
+
+            <EditText
+                android:id="@+id/slot_time"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/area_code"
+                android:autofillHints=""
+                android:hint="Enter Time Slot" />
+
+            <EditText
+                android:id="@+id/seats"
+                android:inputType="number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/slot_time"
+                android:autofillHints=""
+                android:hint="Enter Number of Seats" />
+
+            <EditText
+                android:id="@+id/phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/seats"
+                android:autofillHints=""
+                android:hint="Enter Phone Number" />
+
+            <EditText
+                android:id="@+id/timing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/phone_number"
+                android:autofillHints=""
+                android:hint="Enter Timing" />
+
+            <EditText
+                android:id="@+id/hall_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/timing"
+                android:autofillHints=""
+                android:hint="Enter Hall Name" />
+
+
+            <Button
+                android:background = "@android:color/holo_blue_dark"
+                android:textColor="@android:color/white"
+                android:id="@+id/save_Button"
+                android:paddingTop="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/hall_name"
+                android:layout_marginEnd="5dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="Save"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

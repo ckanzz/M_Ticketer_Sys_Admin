@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">M Ticketer Sys Admin</string>
+    <string name="users">USERS</string>
+    <string name="view_the_database">View the Database</string>
+    <string name="users_database">Users DataBase</string>
+    <string name="movies">MOVIES</string>
+    <string name="view_and_add_to_the_database">View and Add to the Database</string>
+    <string name="movie_database">Movie DataBase</string>
+    <string name="tokens">TOKENS</string>
+    <string name="view_the_database_of_tokens_generated">View the Database of Tokens Generated</string>
+    <string name="token_database">Token DataBase</string>
+</resources>

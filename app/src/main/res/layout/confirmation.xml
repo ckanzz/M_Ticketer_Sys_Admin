@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="23dp">
+
+            <TextView
+                android:id="@+id/text_alert"
+                android:text="Are you sure"
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"
+                android:padding="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"/>
+
+            <Button
+                android:layout_below="@id/text_alert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/no_button"
+                android:text="No"
+                android:layout_marginTop="19dp"
+                android:textColor="@android:color/white"
+                android:background="@android:color/holo_red_dark"/>
+
+            <Button
+                android:layout_below="@id/text_alert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:id="@+id/yes_button"
+                android:text="Yes"
+                android:layout_marginTop="19dp"
+                android:textColor="@android:color/white"
+                android:background="@android:color/holo_green_light"/>
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
