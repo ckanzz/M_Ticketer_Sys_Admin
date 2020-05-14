@@ -1,6 +1,7 @@
 package com.example.mticketersysadmin;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -10,12 +11,15 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mticketersysadmin.data.DataBaseHandler;
 import com.example.mticketersysadmin.model.MovieData;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +27,18 @@ public class MainActivity extends AppCompatActivity {
     private Button Movie_Button;
     private Button Tocken_Button;
     private Button User_Button;
+    private Button Add_Movie;
+    private AlertDialog.Builder builder;
+    private AlertDialog alertDialog;
+
+    private EditText MovieNameEdit;
+    private EditText MovieAreaEdit;
+    private EditText MovieTimeEdit;
+    private EditText MovieSeatEdit;
+    private EditText MoviePhoneEdit;
+    private EditText MovieTimingsEdit;
+    private EditText MovieHallEdit;
+    private Button SaveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         Movie_Button = findViewById(R.id.movie_button);
         Tocken_Button = findViewById(R.id.tocken_button);
         User_Button = findViewById(R.id.user_button);
+        Add_Movie = findViewById(R.id.add_movie_button);
 
         Movie_Button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +109,64 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"EMPTY DATABASE",Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        Add_Movie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createPopup();
+            }
+
+            private void createPopup() {
+                builder = new AlertDialog.Builder(MainActivity.this);
+                View view1 = getLayoutInflater().inflate(R.layout.pop_up,null);
+
+                MovieNameEdit = view1.findViewById(R.id.movie_name);
+                MovieAreaEdit = view1.findViewById(R.id.area_code);
+                MovieTimeEdit = view1.findViewById(R.id.slot_time);
+                MovieSeatEdit = view1.findViewById(R.id.seats);
+                MoviePhoneEdit = view1.findViewById(R.id.phone_number);
+                MovieTimingsEdit = view1.findViewById(R.id.timing);
+                MovieHallEdit = view1.findViewById(R.id.hall_name);
+                SaveButton = view1.findViewById(R.id.save_Button);
+
+                builder.setView(view1);
+                alertDialog = builder.create();
+                alertDialog.show();
+
+                SaveButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        saveMovie(view);
+                    }
+                });
+            }
+
+            private void saveMovie(View view) {
+
+                MovieData movieData = new MovieData();
+
+                movieData.setMovie_name(MovieNameEdit.getText().toString().trim());
+                movieData.setArea_Code(Integer.parseInt(MovieAreaEdit.getText().toString().trim()));
+                movieData.setTime_Slot(Integer.parseInt(MovieTimeEdit.getText().toString().trim()));
+                movieData.setSeats_Available(Integer.parseInt(MovieSeatEdit.getText().toString().trim()));
+                movieData.setPhone_Number(MoviePhoneEdit.getText().toString().trim());
+                movieData.setTiming(MovieTimingsEdit.getText().toString().trim());
+                movieData.setHall_Name(MovieHallEdit.getText().toString().trim());
+
+                dataBaseHandler.add_movie(movieData);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        alertDialog.dismiss();
+                        startActivity(new Intent(MainActivity.this,Movie_List.class));
+                        finish();
+                    }
+                },1400);
+
+                Snackbar.make(view,"Item Saved",Snackbar.LENGTH_SHORT).show();
             }
         });
 

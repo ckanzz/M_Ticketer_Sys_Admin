@@ -130,12 +130,15 @@ public class ReceiveSms extends BroadcastReceiver {
                                             + "\n Time : " + movieDataChosen.getTiming(), null, null);
                                 }
                             }
+                            else{
+                                smsManager.sendTextMessage(msg_from, null, "Please Register Send:\n1 Area_Code", null, null);
+                            }
                         }
                         else {
                             Log.d("WRONG", "onReceive: Wrong");
                             smsManager = SmsManager.getDefault();
                             smsManager.sendTextMessage(msg_from,null,"Incorrect msg For Registration or Movie info send:\n1 Your Area code" +
-                                    "\nFor Booking send : \n2 MovieId NumberofSeats\nput 1 space between each number",
+                                    "\nFor Booking send : \n2 Movie_Id Number_of_Seats\nUse 1 space between each number",
                                     null,null);
                         }
 
