@@ -45,6 +45,8 @@ public class Movie_List extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie__list);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         recyclerView = findViewById(R.id.recycler_view);
         fab = findViewById(R.id.fab);
 

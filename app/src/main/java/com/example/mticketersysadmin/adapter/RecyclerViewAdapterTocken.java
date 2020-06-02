@@ -47,7 +47,7 @@ public class RecyclerViewAdapterTocken extends RecyclerView.Adapter<RecyclerView
         holder.Tocken_ID.setText(MessageFormat.format("Token ID : {0}",tockenData.getId()));
         holder.Tocken_Movie_ID.setText(MessageFormat.format("Movie ID : {0}", tockenData.getMovie_id()));
         holder.Tocken_User_ID.setText(MessageFormat.format("User ID : {0}", String.valueOf(tockenData.getUser_id())));
-        holder.Tocken_Seat.setText(MessageFormat.format("Time Slot : {0}", String.valueOf(tockenData.getSeats())));
+        holder.Tocken_Seat.setText(MessageFormat.format("Number of seats: {0}", String.valueOf(tockenData.getSeats())));
 
 
 

@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     android:paddingLeft="15dp"
+    android:background="@drawable/gradbg"
     android:paddingRight="15dp"
     tools:context=".MainActivity">
+
 
 
     <androidx.cardview.widget.CardView
@@ -67,6 +68,7 @@
             android:layout_marginEnd="15dp"
             android:background="@android:color/holo_orange_dark"
             android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:text="@string/tokens" />
 
     </RelativeLayout>

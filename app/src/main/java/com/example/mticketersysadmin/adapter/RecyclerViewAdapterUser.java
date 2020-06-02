@@ -45,7 +45,7 @@ public class RecyclerViewAdapterUser extends RecyclerView.Adapter<RecyclerViewAd
 
         holder.User_ID.setText(MessageFormat.format("User ID : {0}",userData.getId()));
         holder.User_Area.setText(MessageFormat.format("User Area Code : {0}", String.valueOf(userData.getArea_Code())));
-        holder.User_Phone.setText(MessageFormat.format("User  Phone Number : {0}", userData.getPhone_Number()));
+        holder.User_Phone.setText(MessageFormat.format("User  Phone Number : \n{0}", userData.getPhone_Number()));
 
     }
 

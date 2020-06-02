@@ -25,6 +25,8 @@ public class Users_List extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users__list);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         recyclerView = findViewById(R.id.recycler_view_user);
         dataBaseHandler = new DataBaseHandler(this);
 

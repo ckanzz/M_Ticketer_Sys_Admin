@@ -1,5 +1,6 @@
 package com.example.mticketersysadmin.controler;
 
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,15 +21,21 @@ public class ReceiveSms extends BroadcastReceiver {
 
 
     private DataBaseHandler dataBaseHandler;
+    PendingIntent sentPI,deliveredPI;
+    String SENT="SMS_SENT";
+    String DELIVERED="SMS_DELIVERED";
 
     @Override
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context,"Rec",Toast.LENGTH_SHORT).show();
 
         dataBaseHandler = new DataBaseHandler(context);
+        sentPI=PendingIntent.getBroadcast(context,0,new Intent(SENT),0);
+        deliveredPI=PendingIntent.getBroadcast(context,0,new Intent(DELIVERED),0);
 
         //When msg app broadcasts it automatically picks up intent and then performs the db tasks as it acts like a listner
         if(intent.getAction().equals("android.provider.Telephony.SMS_RECEIVED")){
+
 
             Bundle bundle = intent.getExtras();
             SmsMessage[] msgs = null;
@@ -78,13 +85,13 @@ public class ReceiveSms extends BroadcastReceiver {
                                 //int Ac = dataBaseHandler.user_area(msg_from);
                                 List<String> Movie_Info_Msg_list = dataBaseHandler.getMovieInArea(Integer.parseInt(AreaCode));
                                 for(String msgsend : Movie_Info_Msg_list){
-                                    smsManager.sendTextMessage(msg_from, null, msgsend , null, null);
+                                    smsManager.sendTextMessage(msg_from, null, msgsend , sentPI, deliveredPI);
                                 }
 
                             }
                             else{
                                 dataBaseHandler.add_user(userData);
-                                smsManager.sendTextMessage(msg_from, null, "Regitered To M-Tickter", null, null);
+                                smsManager.sendTextMessage(msg_from, null, "Regitered To M-Tickter", sentPI, deliveredPI);
                             }
 
                             Toast.makeText(context,"Msg Sent",Toast.LENGTH_SHORT).show();
@@ -108,7 +115,7 @@ public class ReceiveSms extends BroadcastReceiver {
                                 Log.d("MOVIE2", "onReceive: " + SelectedOption + " " + userDataBooking);
 
                                 if(SelectedSeats > dataBaseHandler.MovieSeatCount(SelectedOption)){
-                                    smsManager.sendTextMessage(msg_from, null, "These many seats Unavailable Reduce Number", null, null);
+                                    smsManager.sendTextMessage(msg_from, null, "These many seats Unavailable Reduce Number", sentPI, deliveredPI);
                                 }else{
 
                                     TockenData tockenData = new TockenData();
@@ -122,16 +129,16 @@ public class ReceiveSms extends BroadcastReceiver {
 
 
                                     smsManager.sendTextMessage(msg_from, null, "Tocken Id :" + tid +
-                                            "\nTickets Have been Reserved Reach 15 minutes before show time for confirmation", null, null);
+                                            "\nTickets Have been Reserved Reach 15 minutes before show time for confirmation", sentPI, deliveredPI);
 
                                     smsManager.sendTextMessage(movieDataChosen.getPhone_Number(), null,
                                             "Booking Done By : " + msg_from + "\nTocken ID : "
                                             + tid + "\nNumber of Seats : " + SelectedSeats + "\nMovie name : " + movieDataChosen.getMovie_name()
-                                            + "\n Time : " + movieDataChosen.getTiming(), null, null);
+                                            + "\n Time : " + movieDataChosen.getTiming(), sentPI, deliveredPI);
                                 }
                             }
                             else{
-                                smsManager.sendTextMessage(msg_from, null, "Please Register Send:\n1 Area_Code", null, null);
+                                smsManager.sendTextMessage(msg_from, null, "Please Register Send:\n1 Area_Code", sentPI, deliveredPI);
                             }
                         }
                         else {
@@ -139,7 +146,7 @@ public class ReceiveSms extends BroadcastReceiver {
                             smsManager = SmsManager.getDefault();
                             smsManager.sendTextMessage(msg_from,null,"Incorrect msg For Registration or Movie info send:\n1 Your Area code" +
                                     "\nFor Booking send : \n2 Movie_Id Number_of_Seats\nUse 1 space between each number",
-                                    null,null);
+                                    sentPI,deliveredPI);
                         }
 
 
